@@ -1,13 +1,19 @@
 @font-face {
     font-family: "digitaldream";
-    src: url(./css/fonts/DIGITALDREAMFAT.ttf);
+    src: url(./fonts/DIGITALDREAMFAT.ttf);
 }
 
+
+* {
+    background-color: #606470;
+    font-family: digitaldream;
+}
 
 .calculator-body {
     display: flex;
     flex-direction: column;
     background-color: #222831;
+    border: 3px solid black;
     width: 300px;
     height: 500px;
     padding-top: 10px;
@@ -43,10 +49,52 @@
     width: 300px;
     height: 50px;
     margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #d3d6db;
     border-radius: 10px;
     justify-content: end;
     align-items: center;
-    font-family: "digitaldream", "Gill Sans MT", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: digitaldream;
     
 }
+
+.button-section {
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    height: 450px;
+    background-color: #222831;
+   
+}
+
+.button {
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+.function-button {
+    background-color: lightcoral;
+}
+
+#clear {
+    background-color: orange;
+}
+
+
+
+button{
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: -120px -120px, 0 0; 
+   
+}
+
+    button:hover{
+        background:linear-gradient(35deg, white, blue);
+        background-position: 0 0;
+       
+    }
