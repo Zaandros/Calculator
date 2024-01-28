@@ -22,19 +22,17 @@ const nine = document.querySelector("#nine");
 //variables
 
 let number = {
-    
+    numberOne: "",
+    numberTwo: "",
+    answer: 0,
 };
 
-let numberOne;
-let numberTwo;
 let numberThree;
-let answer = 0;
 let plusSet = false;
 let negativeSet = false;
 let multiplySet = false;
 let divideSet = false;
 let firstNumber = true;
-let secondNumber = false;
 
 //event listeners
 plus.addEventListener("click", setPlus);
@@ -58,18 +56,116 @@ zero.addEventListener("click", selectZero);
 //functions
 
 function selectOne()  {
-    numberOne = "1";
-    numberDisplay.innerHTML = numberOne;
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 1;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 1;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+
+    console.log(firstNumber);
+    //numberDisplay.innerHTML = number["numberOne"];
 }
 
 function selectTwo() {
-    numberTwo = "2";
-    numberDisplay.innerHTML = numberTwo;
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 2;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 2;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
 }
 
 function selectThree() {
-    numberThree = numberOne + numberTwo
-    numberDisplay.innerHTML = numberThree;
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 3;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 3;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectFour() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 4;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 4;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectFive() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 5;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 5;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectSix() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 6;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 6;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectSeven() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 7;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 7;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectEight() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 8;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 8;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectNine() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 9;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 9;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
+}
+
+function selectZero() {
+    if (firstNumber == true) {
+        number["numberOne"] = number["numberOne"] + 0;
+        numberDisplay.innerHTML = number["numberOne"];
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + 0;
+        numberDisplay.innerHTML = number["numberTwo"];
+    }
 }
 
 function setPlus() {
@@ -77,20 +173,7 @@ function setPlus() {
     negativeSet = false;
     divideSet = false;
     multiplySet = false;
-
-    if (firstNumber == true) {
-        
-        firstNumber == false;
-        secondNumber == true;
-    }
-    else if (firstNumber == false) {
-     
-        firstNumber == true;
-        secondNumber == false;
-        
-    }
-    console.log("first " + firstNumber);
-        console.log("second " + secondNumber);
+    firstNumber = false;
 } 
 
 function setNegative() {
@@ -98,33 +181,7 @@ function setNegative() {
     negativeSet = true;
     divideSet = false;
     multiplySet = false;
-}
-
-function clearData() {
-    numberDisplay.innerHTML = "";
-    numberOne = 0;
-    numberTwo = 0;
-}
-
-function equationAnswer(a, b = 0) {
-
-    a = numberOne;
-    b = numberTwo;
-
-    if (plusSet == true) {
-        answer = (parseFloat(a) + parseFloat(b));
-    }
-    else if (negativeSet == true) {
-        answer = (parseFloat(a) - parseFloat(b));
-    } 
-    else if (divideSet == true) {
-        answer = (parseFloat(a) / parseFloat(b));
-    }
-    else if (multiplySet == true) {
-        answer = (parseFloat(a) * parseFloat(b));
-    }
-   
-    numberDisplay.innerHTML = answer
+    firstNumber = false;
 }
 
 function setMultiply() {
@@ -132,6 +189,7 @@ function setMultiply() {
     negativeSet = false;
     divideSet = false;
     multiplySet = true;
+    firstNumber = false;
 }
 
 function setDivide() {
@@ -139,4 +197,35 @@ function setDivide() {
     negativeSet = false;
     divideSet = true;
     multiplySet = false;
+    firstNumber = false;
 }
+
+function clearData() {
+    firstNumber = true;
+    numberDisplay.innerHTML = "0";
+    number["numberOne"] = "";
+    number["numberTwo"] = "";
+}
+
+function equationAnswer(a, b = 0) {
+
+    a = number["numberOne"];
+    b = number["numberTwo"];
+    firstNumber = true;
+
+    if (plusSet == true) {
+        number["answer"] = (parseFloat(a) + parseFloat(b));
+    }
+    else if (negativeSet == true) {
+        number["answer"] = (parseFloat(a) - parseFloat(b));
+    } 
+    else if (divideSet == true) {
+        number["answer"] = (parseFloat(a) / parseFloat(b));
+    }
+    else if (multiplySet == true) {
+        number["answer"] = (parseFloat(a) * parseFloat(b));
+    }
+   
+    numberDisplay.innerHTML = number["answer"];
+}
+
