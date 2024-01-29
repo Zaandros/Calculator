@@ -179,10 +179,10 @@ function setPlus(a, b = 0) {
     multiplySet = false;
     firstNumber = false;
 
-    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+    if (number["numberOne"] != "" && number["numberTwo"] != "") {
         number["numberOne"] = (parseFloat(a) + parseFloat(b));
         numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = 0;
+        number["numberTwo"] = "";
         firstNumber = false
     }
 
@@ -199,10 +199,10 @@ function setNegative(a, b = 0) {
     multiplySet = false;
     firstNumber = false;
 
-    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+    if (number["numberOne"] != "" && number["numberTwo"] != "") {
         number["numberOne"] = (parseFloat(a) - parseFloat(b));
         numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = 0;
+        number["numberTwo"] = "";
         firstNumber = false
     }
 }
@@ -218,10 +218,10 @@ function setMultiply(a, b = 0) {
     multiplySet = true;
     firstNumber = false;
 
-    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+    if (number["numberOne"] != "" && number["numberTwo"] != "") {
         number["numberOne"] = (parseFloat(a) * parseFloat(b));
         numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = 0;
+        number["numberTwo"] = "";
         firstNumber = false
     }
 }
@@ -237,10 +237,10 @@ function setDivide(a, b = 0) {
     multiplySet = false;
     firstNumber = false;
 
-    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+    if (number["numberOne"] != "" && number["numberTwo"] != "") {
         number["numberOne"] = (parseFloat(a) / parseFloat(b));
         numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = 0;
+        number["numberTwo"] = "";
         firstNumber = false
     }
 }
