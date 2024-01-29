@@ -168,36 +168,81 @@ function selectZero() {
     }
 }
 
-function setPlus() {
+function setPlus(a, b = 0) {
+
+    a = number["numberOne"];
+    b = number["numberTwo"];
+
     plusSet = true;
     negativeSet = false;
     divideSet = false;
     multiplySet = false;
     firstNumber = false;
+
+    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+        number["numberOne"] = (parseFloat(a) + parseFloat(b));
+        numberDisplay.innerHTML = number["numberOne"];
+        number["numberTwo"] = 0;
+        firstNumber = false
+    }
+
 } 
 
-function setNegative() {
+function setNegative(a, b = 0) {
+
+    a = number["numberOne"];
+    b = number["numberTwo"];
+
     plusSet = false;
     negativeSet = true;
     divideSet = false;
     multiplySet = false;
     firstNumber = false;
+
+    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+        number["numberOne"] = (parseFloat(a) - parseFloat(b));
+        numberDisplay.innerHTML = number["numberOne"];
+        number["numberTwo"] = 0;
+        firstNumber = false
+    }
 }
 
-function setMultiply() {
+function setMultiply(a, b = 0) {
+
+    a = number["numberOne"];
+    b = number["numberTwo"];
+    
     plusSet = false;
     negativeSet = false;
     divideSet = false;
     multiplySet = true;
     firstNumber = false;
+
+    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+        number["numberOne"] = (parseFloat(a) * parseFloat(b));
+        numberDisplay.innerHTML = number["numberOne"];
+        number["numberTwo"] = 0;
+        firstNumber = false
+    }
 }
 
-function setDivide() {
+function setDivide(a, b = 0) {
+
+    a = number["numberOne"];
+    b = number["numberTwo"];
+
     plusSet = false;
     negativeSet = false;
     divideSet = true;
     multiplySet = false;
     firstNumber = false;
+
+    if (number["numberOne"] != 0 && number["numberTwo"] != 0) {
+        number["numberOne"] = (parseFloat(a) / parseFloat(b));
+        numberDisplay.innerHTML = number["numberOne"];
+        number["numberTwo"] = 0;
+        firstNumber = false
+    }
 }
 
 function clearData() {
