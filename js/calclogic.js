@@ -18,6 +18,7 @@ const six = document.querySelector("#six");
 const seven = document.querySelector("#seven");
 const eight = document.querySelector("#eight");
 const nine = document.querySelector("#nine");
+const functionButtons = document.querySelectorAll(".function-buttons");
 
 //variables
 
@@ -27,6 +28,7 @@ let number = {
     answer: 0,
 };
 
+let currentOperation
 let numberThree;
 let plusSet = false;
 let negativeSet = false;
@@ -55,6 +57,10 @@ zero.addEventListener("click", selectZero);
 
 //functions
 
+/*functionButtons.forEach((button) => 
+    button.addEventListener("click", () => setOperation(button.textContent))
+);*/
+
 function selectOne()  {
     if (firstNumber == true) {
         number["numberOne"] = number["numberOne"] + 1;
@@ -66,7 +72,7 @@ function selectOne()  {
     }
 
     console.log(firstNumber);
-    //numberDisplay.innerHTML = number["numberOne"];
+    
 }
 
 function selectTwo() {
@@ -168,7 +174,16 @@ function selectZero() {
     }
 }
 
+/*function setOperation(operator) {
+    
+    currentOperation = operator;
+    return currentOperation;
+    
+}*/
+
 function setPlus(a, b = 0) {
+    
+
 
     a = number["numberOne"];
     b = number["numberTwo"];
@@ -185,7 +200,7 @@ function setPlus(a, b = 0) {
         number["numberTwo"] = "";
         firstNumber = false
     }
-
+    
 } 
 
 function setNegative(a, b = 0) {
@@ -205,6 +220,7 @@ function setNegative(a, b = 0) {
         number["numberTwo"] = "";
         firstNumber = false
     }
+   
 }
 
 function setMultiply(a, b = 0) {
@@ -224,6 +240,7 @@ function setMultiply(a, b = 0) {
         number["numberTwo"] = "";
         firstNumber = false
     }
+    
 }
 
 function setDivide(a, b = 0) {
@@ -243,7 +260,9 @@ function setDivide(a, b = 0) {
         number["numberTwo"] = "";
         firstNumber = false
     }
+    
 }
+
 
 function clearData() {
     firstNumber = true;
