@@ -9,6 +9,7 @@ const negative = document.querySelector("#negative");
 const plus = document.querySelector("#plus");
 const equals = document.querySelector("#equals");
 const zero = document.querySelector("#zero");
+const numberButtons = document.querySelectorAll(".number");
 const one = document.querySelector("#one");
 const two = document.querySelector("#two");
 const three = document.querySelector("#three");
@@ -43,6 +44,10 @@ clear.addEventListener("click", clearData);
 equals.addEventListener("click", equationAnswer);
 multiply.addEventListener("click", setMultiply);
 divide.addEventListener("click", setDivide);
+for (let i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener("click", selectNumber);
+}
+/*
 one.addEventListener("click", selectOne);
 two.addEventListener("click", selectTwo);
 three.addEventListener("click", selectThree);
@@ -52,15 +57,30 @@ six.addEventListener("click", selectSix);
 seven.addEventListener("click", selectSeven);
 eight.addEventListener("click", selectEight);
 nine.addEventListener("click", selectNine);
-zero.addEventListener("click", selectZero);
+zero.addEventListener("click", selectZero);*/
 
 
 //functions
 
+
+/*
+numberSelect.forEach((button) =>
+    button.addEventListener("click", () => number["numberOne"] = number["numberOne"] + button.textContent),
+    numberDisplay.innerHTML = number["numberOne"]
+    );
+
+*/
+
+
+function selectNumber() {
+    number["numberOne"] = number["numberOne"] + this.textContent;
+    numberDisplay.innerHTML = number["numberOne"];
+}
+
 /*functionButtons.forEach((button) => 
     button.addEventListener("click", () => setOperation(button.textContent))
 );*/
-
+/*
 function selectOne()  {
     if (firstNumber == true) {
         number["numberOne"] = number["numberOne"] + 1;
@@ -173,7 +193,7 @@ function selectZero() {
         numberDisplay.innerHTML = number["numberTwo"];
     }
 }
-
+*/
 /*function setOperation(operator) {
     
     currentOperation = operator;
@@ -292,4 +312,3 @@ function equationAnswer(a, b = 0) {
    
     numberDisplay.innerHTML = number["answer"];
 }
-
