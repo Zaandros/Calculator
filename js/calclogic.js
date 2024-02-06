@@ -190,7 +190,7 @@ function divide(a,b) {
     b = parseFloat(b);
     answer = a/b;
 
-        if (a/b == Infinity) {
+        if (a/b == Infinity || a/b == -Infinity) {
             answer = "error, self destruct initialised";
         }
 
