@@ -1,34 +1,20 @@
 //Query selectors
 const numberDisplay = document.querySelector(".number-display");
 const clear = document.querySelector("#clear");
-const posNeg = document.querySelector("#pos-neg");
-const squareRoot = document.querySelector("#square-root");
-const divide = document.querySelector("#divide");
-const multiply = document.querySelector("#multiply");
-const negative = document.querySelector("#negative");
-const plus = document.querySelector("#plus");
 const equals = document.querySelector("#equals");
 const numberButtons = document.querySelectorAll(".number");
 const functionButtons = document.querySelectorAll(".operator");
 
 //variables
 
-let number = {
-    numbers: ["",""],
-    answer: 0,
-};
-
+let numbers = ["",""];
+let answer = 0;
 let operator= "";
-let numberThree;
-let plusSet = false;
-let negativeSet = false;
-let multiplySet = false;
-let divideSet = false;
-let firstNumber = true;
+let n = 0;
 
 //event listeners
 clear.addEventListener("click", clearData);
-equals.addEventListener("click", equationAnswer);
+equals.addEventListener("click", operate);
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener("click", selectNumber);
 }
@@ -36,144 +22,148 @@ for (let y = 0; y < functionButtons.length; y++) {
     functionButtons[y].addEventListener("click", selectOperation);
 }
 
-
-
-
 //functions
 
-
 function selectNumber() {
-    if (firstNumber == true) {
-    number["numberOne"] = number["numberOne"] + this.textContent;
-    numberDisplay.innerHTML = number["numberOne"];
-    console.log(number["numberOne"]);
+    if (n == 0) {
+
+    numbers[0] = numbers[0] + this.textContent;
+    numberDisplay.innerHTML = numbers[0];
+    console.log(numbers[0]);
     }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + this.textContent;
-        numberDisplay.innerHTML = number["numberOne"] + currentOperation + number["numberTwo"];
-    }
-    
+    else if (n == 1) {
+        numbers[1] = numbers[1] + this.textContent;
+        numberDisplay.innerHTML = numbers[0] + operator + numbers[1];
+    } 
 }
 
 function selectOperation() {
 
-    if (this.textContent == `+`) {
-        firstNumber = false;
-        plusSet == true;
-        currentOperation == `plus`;
+    if (numbers[0] != "" && numbers[1] != "" && operator != "" ) {
+        operate();
+    }
+
+     if (this.textContent == `+`) {
         
-        console.log(currentOperation);
-        
+        operator = `+`;
+        n = 1;
+        console.log(operator);
     }
     else if (this.textContent == "÷") {
-        firstNumber = false;
-        divideSet == true;
-        currentOperation = "÷";
-        
+       
+        operator = "÷";
+        n = 1;
+        console.log(operator);
     }
     else if (this.textContent == "*") {
-        firstNumber = false;
-        multiplySet == true;
-        currentOperation = "*";
         
+        operator = "*";
+        n = 1;
+        console.log(operator);
     }
     else if (this.textContent == "-") {
-        firstNumber = false;
-        negativeSet == true;
-        currentOperation = "-";
-       
+    
+        operator = "-";
+        n = 1;
+        console.log(operator);
     }
-    console.log("hi");
 }
 
-function operate(operator, a, b) {
+function operate() {
+    
    switch (operator) {
-        case `plus`:
-            return plus(a,b);
-        case `minus`:
-            return minus(a,b);
-        case `multiply`:
-            return multiply(a,b);
-        case `divide`:
-            return divide(a,b);
+        case `+`:
+            return plus(numbers[0],numbers[1]);
+        case `-`:
+            return minus(numbers[0],numbers[1]);
+        case `*`:
+            return multiply(numbers[0],numbers[1]);
+        case `÷`:
+            return divide(numbers[0],numbers[1]);
    }
 }
 
 function plus(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
-    number["answer"] = a+b;
-        if (Number.isInteger(number["answer"])) {
-            return String(number["answer"]);
+    answer = a+b;
+    console.log("answer: " + answer)
+        if (Number.isInteger(answer)) {
+             answer;
+             numbers[0] = answer;
+             numbers[1] = "";
         }
         else {
-            return String(number["answer"].toPrecision(3));
+             answer.toPrecision(3);
+             numbers[0] = answer;
+             numbers[1] = "";
         }
+        
+           numberDisplay.innerHTML = answer;
+           console.log(answer);
 }
 
 function minus(a,b) {
     a= parseFloat(a);
     b = parseFloat(b);
-    number["answer"] = a-b;
-        if (Number.isInteger(number["answer"])) {
-            return String(number["answer"]);
+    answer = a-b;
+        if (Number.isInteger(answer)) {
+            answer;
+            numbers[0] = answer;
+            numbers[1] = "";
         }
         else {
-            return String(number["answer"].toPrecision(3));
+            answer.toPrecision(3);
+            numbers[0] = answer;
+            numbers[1] = "";
         }
+        numberDisplay.innerHTML = answer;
 }
 
 function multiply(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
-    number["answer"] = a*b;
-        if (Number.isInteger(number["answer"])) {
-            return String(number["answer"]);
+    answer = a*b;
+        if (Number.isInteger(answer)) {
+            answer;
+            numbers[0] = answer;
+            numbers[1] = "";
         }
         else {
-            return String(number["answer"].toPrecision(3));
+            answer.toPrecision(3);
+            numbers[0] = answer;
+            numbers[1] = "";
         }
+        numberDisplay.innerHTML = answer;
 }
 
 function divide(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
-    number["answer"] = a/b;
-        if (Number.isInteger(number["answer"])) {
-            return String(number["answer"]);
+    answer = a/b;
+
+        if (a/b == Infinity) {
+            answer = "error, self destruct initialised";
+        }
+
+        if (Number.isInteger(answer)) {
+           answer;
+           numbers[0] = answer;
+           numbers[1] = "";
         }
         else {
-            return String(number["answer"].toPrecision(3));
+            parseFloat(answer).toFixed(2);
+            numbers[0] = answer;
+            numbers[1] = "";
         }
+        numberDisplay.innerHTML = answer;
 }
-
 
 function clearData() {
     firstNumber = true;
-    currentOperation = "";
+    operator = "";
     numberDisplay.innerHTML = "0";
-    number["numberOne"] = "";
-    number["numberTwo"] = "";
+    numbers = ["",""];
+    n = 0;
 }
 
-function equationAnswer(a, b = 0) {
-
-    a = number["numberOne"];
-    b = number["numberTwo"];
-    firstNumber = true;
-
-    if (plusSet == true) {
-        number["answer"] = (parseFloat(a) + parseFloat(b));
-    }
-    else if (negativeSet == true) {
-        number["answer"] = (parseFloat(a) - parseFloat(b));
-    } 
-    else if (divideSet == true) {
-        number["answer"] = (parseFloat(a) / parseFloat(b));
-    }
-    else if (multiplySet == true) {
-        number["answer"] = (parseFloat(a) * parseFloat(b));
-    }
-   
-    numberDisplay.innerHTML = number["answer"];
-}
