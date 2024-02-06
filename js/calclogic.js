@@ -92,7 +92,11 @@ function selectOperation() {
 }
 
 function operate() {
-    
+    if (numbers[0] == "." || numbers[1] == ".") {
+        console.log("hi");
+        
+        return error();
+    }
    switch (operator) {
         case `+`:
             decimal.disabled = false;
@@ -207,10 +211,28 @@ function divide(a,b) {
         numberDisplay.innerHTML = answer;
 }
 
+function error() {
+    for (let i = 0; i < numberButtons.length; i++) {
+        numberButtons[i].disabled = true;
+    }
+    for (let y = 0; y < functionButtons.length; y++) {
+        functionButtons[y].disabled = true;
+    }
+    numberDisplay.innerHTML = "invalid equation. Please reset calculator";
+}
+
 function clearData() {
+    for (let i = 0; i < numberButtons.length; i++) {
+        numberButtons[i].disabled = false;
+    }
+    for (let y = 0; y < functionButtons.length; y++) {
+        functionButtons[y].disabled = false;
+    }
     firstNumber = true;
     decimal.disabled = false;
     equals.disabled = true;
+    numbers.disabled = false;
+    operator.disabled = false;
     operator = "";
     numberDisplay.innerHTML = "0";
     numbers = ["",""];
