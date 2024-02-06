@@ -19,7 +19,7 @@ const six = document.querySelector("#six");
 const seven = document.querySelector("#seven");
 const eight = document.querySelector("#eight");
 const nine = document.querySelector("#nine");
-const functionButtons = document.querySelectorAll(".function-buttons");
+const functionButtons = document.querySelectorAll(".operator");
 
 //variables
 
@@ -29,7 +29,7 @@ let number = {
     answer: 0,
 };
 
-let currentOperation
+let currentOperation = "";
 let numberThree;
 let plusSet = false;
 let negativeSet = false;
@@ -38,14 +38,17 @@ let divideSet = false;
 let firstNumber = true;
 
 //event listeners
-plus.addEventListener("click", setPlus);
-negative.addEventListener("click", setNegative);
+//plus.addEventListener("click", setPlus);
+//negative.addEventListener("click", setNegative);
 clear.addEventListener("click", clearData);
 equals.addEventListener("click", equationAnswer);
-multiply.addEventListener("click", setMultiply);
-divide.addEventListener("click", setDivide);
+//multiply.addEventListener("click", setMultiply);
+//divide.addEventListener("click", setDivide);
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener("click", selectNumber);
+}
+for (let y = 0; y < functionButtons.length; y++) {
+    functionButtons[y].addEventListener("click", selectOperation);
 }
 /*
 one.addEventListener("click", selectOne);
@@ -73,8 +76,56 @@ numberSelect.forEach((button) =>
 
 
 function selectNumber() {
+    if (firstNumber == true) {
     number["numberOne"] = number["numberOne"] + this.textContent;
     numberDisplay.innerHTML = number["numberOne"];
+    console.log(number["numberOne"]);
+    }
+    else if (firstNumber == false) {
+        number["numberTwo"] = number["numberTwo"] + this.textContent;
+        numberDisplay.innerHTML = number["numberOne"] + currentOperation + number["numberTwo"];
+    }
+    
+}
+
+function selectOperation() {
+
+    if (this.textContent == `+`) {
+        firstNumber = false;
+        plusSet == true;
+        currentOperation == `plus`;
+        
+        console.log(currentOperation);
+        
+    }
+    else if (this.textContent == "÷") {
+        firstNumber = false;
+        divideSet == true;
+        currentOperation = "÷";
+        
+    }
+    else if (this.textContent == "*") {
+        firstNumber = false;
+        multiplySet == true;
+        currentOperation = "*";
+        
+    }
+    else if (this.textContent == "-") {
+        firstNumber = false;
+        negativeSet == true;
+        currentOperation = "-";
+       
+    }
+    console.log("hi");
+}
+
+function operate() {
+    if (number["numberOne"] != "" && number["numberTwo"] != "" && currentOperation == "+") {
+       number["answer"] = number["numberOne"] + currentOperation + number["numberTwo"];
+    }
+    else if (number["numberOne"] != "" && number["numberTwo"] != "" && currentOperation == "+") {
+        number["answer"] = number["numberOne"] + currentOperation + number["numberTwo"];
+    } 
 }
 
 /*functionButtons.forEach((button) => 
@@ -200,14 +251,13 @@ function selectZero() {
     return currentOperation;
     
 }*/
-
+/*
 function setPlus(a, b = 0) {
     
-
-
     a = number["numberOne"];
     b = number["numberTwo"];
 
+    currentOperation = "+"
     plusSet = true;
     negativeSet = false;
     divideSet = false;
@@ -228,6 +278,7 @@ function setNegative(a, b = 0) {
     a = number["numberOne"];
     b = number["numberTwo"];
 
+    currentOperation = "-"
     plusSet = false;
     negativeSet = true;
     divideSet = false;
@@ -248,6 +299,7 @@ function setMultiply(a, b = 0) {
     a = number["numberOne"];
     b = number["numberTwo"];
     
+    currentOperation = "x"
     plusSet = false;
     negativeSet = false;
     divideSet = false;
@@ -268,6 +320,7 @@ function setDivide(a, b = 0) {
     a = number["numberOne"];
     b = number["numberTwo"];
 
+    currentOperation = "/"
     plusSet = false;
     negativeSet = false;
     divideSet = true;
@@ -282,10 +335,11 @@ function setDivide(a, b = 0) {
     }
     
 }
-
+*/
 
 function clearData() {
     firstNumber = true;
+    currentOperation = "";
     numberDisplay.innerHTML = "0";
     number["numberOne"] = "";
     number["numberTwo"] = "";
