@@ -4,6 +4,8 @@ const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 const numberButtons = document.querySelectorAll(".number");
 const functionButtons = document.querySelectorAll(".operator");
+const decimal = document.getElementById("decimal");
+const sqrRoot = document.getElementById("square-root");
 
 //variables
 
@@ -22,9 +24,21 @@ for (let y = 0; y < functionButtons.length; y++) {
     functionButtons[y].addEventListener("click", selectOperation);
 }
 
+
+
 //functions
 
+decimal.onclick = function() {
+    decimal.disabled = true;
+}
+
+sqrRoot.onclick = function() {
+    operate();
+}
+
+
 function selectNumber() {
+    
     if (n == 0) {
 
     numbers[0] = numbers[0] + this.textContent;
@@ -44,25 +58,25 @@ function selectOperation() {
     }
 
      if (this.textContent == `+`) {
-        
+        decimal.disabled = false;
         operator = `+`;
         n = 1;
         console.log(operator);
     }
     else if (this.textContent == "÷") {
-       
+        decimal.disabled = false;
         operator = "÷";
         n = 1;
         console.log(operator);
     }
     else if (this.textContent == "*") {
-        
+        decimal.disabled = false;
         operator = "*";
         n = 1;
         console.log(operator);
     }
     else if (this.textContent == "-") {
-    
+        decimal.disabled = false;
         operator = "-";
         n = 1;
         console.log(operator);
@@ -73,14 +87,35 @@ function operate() {
     
    switch (operator) {
         case `+`:
+            decimal.disabled = false;
             return plus(numbers[0],numbers[1]);
         case `-`:
+            decimal.disabled = false;
             return minus(numbers[0],numbers[1]);
         case `*`:
+            decimal.disabled = false;
             return multiply(numbers[0],numbers[1]);
         case `÷`:
+            decimal.disabled = false;
             return divide(numbers[0],numbers[1]);
+        case `√`:
+            decimal,disabled = false;
+            return square(numbers[0]);
    }
+}
+
+function square(a) {
+    a = parseFloat(a);
+    answer = Math.sqrt(a);
+        if (Number.isInteger(answer)) {
+            parseFloat(answer.toPrecision(2));
+            numbers[0] = answer;
+        }
+        else {
+            parseFloat(answer.toPrecision(2));
+            numbers[0] = answer;
+        }
+        numberButtons.innerHTML = answer;
 }
 
 function plus(a,b) {
@@ -89,12 +124,12 @@ function plus(a,b) {
     answer = a+b;
     console.log("answer: " + answer)
         if (Number.isInteger(answer)) {
-             answer;
+            parseFloat(answer.toPrecision(2));
              numbers[0] = answer;
              numbers[1] = "";
         }
         else {
-             answer.toPrecision(3);
+            parseFloat(answer.toPrecision(2));
              numbers[0] = answer;
              numbers[1] = "";
         }
@@ -108,12 +143,12 @@ function minus(a,b) {
     b = parseFloat(b);
     answer = a-b;
         if (Number.isInteger(answer)) {
-            answer;
+            parseFloat(answer.toPrecision(2));
             numbers[0] = answer;
             numbers[1] = "";
         }
         else {
-            answer.toPrecision(3);
+            parseFloat(answer.toPrecision(2));
             numbers[0] = answer;
             numbers[1] = "";
         }
@@ -125,12 +160,12 @@ function multiply(a,b) {
     b = parseFloat(b);
     answer = a*b;
         if (Number.isInteger(answer)) {
-            answer;
+            parseFloat(answer.toPrecision(2));
             numbers[0] = answer;
             numbers[1] = "";
         }
         else {
-            answer.toPrecision(3);
+            parseFloat(answer.toPrecision(2));
             numbers[0] = answer;
             numbers[1] = "";
         }
@@ -147,12 +182,12 @@ function divide(a,b) {
         }
 
         if (Number.isInteger(answer)) {
-           answer;
+            parseFloat((Math.round(answer*100)/100).toFixed(20));
            numbers[0] = answer;
            numbers[1] = "";
         }
         else {
-            parseFloat(answer).toFixed(2);
+            parseFloat((Math.round(answer*100)/100).toFixed(20));
             numbers[0] = answer;
             numbers[1] = "";
         }
@@ -161,6 +196,7 @@ function divide(a,b) {
 
 function clearData() {
     firstNumber = true;
+    decimal.disabled = false;
     operator = "";
     numberDisplay.innerHTML = "0";
     numbers = ["",""];
