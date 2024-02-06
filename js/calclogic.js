@@ -8,28 +8,17 @@ const multiply = document.querySelector("#multiply");
 const negative = document.querySelector("#negative");
 const plus = document.querySelector("#plus");
 const equals = document.querySelector("#equals");
-const zero = document.querySelector("#zero");
 const numberButtons = document.querySelectorAll(".number");
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
-const three = document.querySelector("#three");
-const four = document.querySelector("#four");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
-const seven = document.querySelector("#seven");
-const eight = document.querySelector("#eight");
-const nine = document.querySelector("#nine");
 const functionButtons = document.querySelectorAll(".operator");
 
 //variables
 
 let number = {
-    numberOne: "",
-    numberTwo: "",
+    numbers: ["",""],
     answer: 0,
 };
 
-let currentOperation = "";
+let operator= "";
 let numberThree;
 let plusSet = false;
 let negativeSet = false;
@@ -38,41 +27,19 @@ let divideSet = false;
 let firstNumber = true;
 
 //event listeners
-//plus.addEventListener("click", setPlus);
-//negative.addEventListener("click", setNegative);
 clear.addEventListener("click", clearData);
 equals.addEventListener("click", equationAnswer);
-//multiply.addEventListener("click", setMultiply);
-//divide.addEventListener("click", setDivide);
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener("click", selectNumber);
 }
 for (let y = 0; y < functionButtons.length; y++) {
     functionButtons[y].addEventListener("click", selectOperation);
 }
-/*
-one.addEventListener("click", selectOne);
-two.addEventListener("click", selectTwo);
-three.addEventListener("click", selectThree);
-four.addEventListener("click", selectFour);
-five.addEventListener("click", selectFive);
-six.addEventListener("click", selectSix);
-seven.addEventListener("click", selectSeven);
-eight.addEventListener("click", selectEight);
-nine.addEventListener("click", selectNine);
-zero.addEventListener("click", selectZero);*/
+
+
 
 
 //functions
-
-
-/*
-numberSelect.forEach((button) =>
-    button.addEventListener("click", () => number["numberOne"] = number["numberOne"] + button.textContent),
-    numberDisplay.innerHTML = number["numberOne"]
-    );
-
-*/
 
 
 function selectNumber() {
@@ -119,223 +86,67 @@ function selectOperation() {
     console.log("hi");
 }
 
-function operate() {
-    if (number["numberOne"] != "" && number["numberTwo"] != "" && currentOperation == "+") {
-       number["answer"] = number["numberOne"] + currentOperation + number["numberTwo"];
-    }
-    else if (number["numberOne"] != "" && number["numberTwo"] != "" && currentOperation == "+") {
-        number["answer"] = number["numberOne"] + currentOperation + number["numberTwo"];
-    } 
+function operate(operator, a, b) {
+   switch (operator) {
+        case `plus`:
+            return plus(a,b);
+        case `minus`:
+            return minus(a,b);
+        case `multiply`:
+            return multiply(a,b);
+        case `divide`:
+            return divide(a,b);
+   }
 }
 
-/*functionButtons.forEach((button) => 
-    button.addEventListener("click", () => setOperation(button.textContent))
-);*/
-/*
-function selectOne()  {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 1;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 1;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-
-    console.log(firstNumber);
-    
+function plus(a,b) {
+    a = parseFloat(a);
+    b = parseFloat(b);
+    number["answer"] = a+b;
+        if (Number.isInteger(number["answer"])) {
+            return String(number["answer"]);
+        }
+        else {
+            return String(number["answer"].toPrecision(3));
+        }
 }
 
-function selectTwo() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 2;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 2;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
+function minus(a,b) {
+    a= parseFloat(a);
+    b = parseFloat(b);
+    number["answer"] = a-b;
+        if (Number.isInteger(number["answer"])) {
+            return String(number["answer"]);
+        }
+        else {
+            return String(number["answer"].toPrecision(3));
+        }
 }
 
-function selectThree() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 3;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 3;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
+function multiply(a,b) {
+    a = parseFloat(a);
+    b = parseFloat(b);
+    number["answer"] = a*b;
+        if (Number.isInteger(number["answer"])) {
+            return String(number["answer"]);
+        }
+        else {
+            return String(number["answer"].toPrecision(3));
+        }
 }
 
-function selectFour() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 4;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 4;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
+function divide(a,b) {
+    a = parseFloat(a);
+    b = parseFloat(b);
+    number["answer"] = a/b;
+        if (Number.isInteger(number["answer"])) {
+            return String(number["answer"]);
+        }
+        else {
+            return String(number["answer"].toPrecision(3));
+        }
 }
 
-function selectFive() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 5;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 5;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-}
-
-function selectSix() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 6;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 6;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-}
-
-function selectSeven() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 7;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 7;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-}
-
-function selectEight() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 8;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 8;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-}
-
-function selectNine() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 9;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 9;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-}
-
-function selectZero() {
-    if (firstNumber == true) {
-        number["numberOne"] = number["numberOne"] + 0;
-        numberDisplay.innerHTML = number["numberOne"];
-    }
-    else if (firstNumber == false) {
-        number["numberTwo"] = number["numberTwo"] + 0;
-        numberDisplay.innerHTML = number["numberTwo"];
-    }
-}
-*/
-/*function setOperation(operator) {
-    
-    currentOperation = operator;
-    return currentOperation;
-    
-}*/
-/*
-function setPlus(a, b = 0) {
-    
-    a = number["numberOne"];
-    b = number["numberTwo"];
-
-    currentOperation = "+"
-    plusSet = true;
-    negativeSet = false;
-    divideSet = false;
-    multiplySet = false;
-    firstNumber = false;
-
-    if (number["numberOne"] != "" && number["numberTwo"] != "") {
-        number["numberOne"] = (parseFloat(a) + parseFloat(b));
-        numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = "";
-        firstNumber = false
-    }
-    
-} 
-
-function setNegative(a, b = 0) {
-
-    a = number["numberOne"];
-    b = number["numberTwo"];
-
-    currentOperation = "-"
-    plusSet = false;
-    negativeSet = true;
-    divideSet = false;
-    multiplySet = false;
-    firstNumber = false;
-
-    if (number["numberOne"] != "" && number["numberTwo"] != "") {
-        number["numberOne"] = (parseFloat(a) - parseFloat(b));
-        numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = "";
-        firstNumber = false
-    }
-   
-}
-
-function setMultiply(a, b = 0) {
-
-    a = number["numberOne"];
-    b = number["numberTwo"];
-    
-    currentOperation = "x"
-    plusSet = false;
-    negativeSet = false;
-    divideSet = false;
-    multiplySet = true;
-    firstNumber = false;
-
-    if (number["numberOne"] != "" && number["numberTwo"] != "") {
-        number["numberOne"] = (parseFloat(a) * parseFloat(b));
-        numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = "";
-        firstNumber = false
-    }
-    
-}
-
-function setDivide(a, b = 0) {
-
-    a = number["numberOne"];
-    b = number["numberTwo"];
-
-    currentOperation = "/"
-    plusSet = false;
-    negativeSet = false;
-    divideSet = true;
-    multiplySet = false;
-    firstNumber = false;
-
-    if (number["numberOne"] != "" && number["numberTwo"] != "") {
-        number["numberOne"] = (parseFloat(a) / parseFloat(b));
-        numberDisplay.innerHTML = number["numberOne"];
-        number["numberTwo"] = "";
-        firstNumber = false
-    }
-    
-}
-*/
 
 function clearData() {
     firstNumber = true;
