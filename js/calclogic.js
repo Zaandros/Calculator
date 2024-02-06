@@ -27,7 +27,7 @@ for (let y = 0; y < functionButtons.length; y++) {
 
 
 //functions
-
+equals.disabled = true;
 decimal.onclick = function() {
     decimal.disabled = true;
 }
@@ -38,7 +38,9 @@ sqrRoot.onclick = function() {
 
 
 function selectNumber() {
-    
+
+   
+
     if (n == 0) {
 
     numbers[0] = numbers[0] + this.textContent;
@@ -49,6 +51,12 @@ function selectNumber() {
         numbers[1] = numbers[1] + this.textContent;
         numberDisplay.innerHTML = numbers[0] + operator + numbers[1];
     } 
+    if (numbers[0] == "" || numbers[1] == "") {
+        equals.disabled = true;
+    }
+    else if (numbers[0] != "" && numbers[1] != ""){
+        equals.disabled = false;
+    }
 }
 
 function selectOperation() {
@@ -88,18 +96,23 @@ function operate() {
    switch (operator) {
         case `+`:
             decimal.disabled = false;
+            equals.disabled = true;
             return plus(numbers[0],numbers[1]);
         case `-`:
             decimal.disabled = false;
+            equals.disabled = true;
             return minus(numbers[0],numbers[1]);
         case `*`:
             decimal.disabled = false;
+            equals.disabled = true;
             return multiply(numbers[0],numbers[1]);
         case `÷`:
             decimal.disabled = false;
+            equals.disabled = true;
             return divide(numbers[0],numbers[1]);
         case `√`:
             decimal,disabled = false;
+            equals.disabled = true;
             return square(numbers[0]);
    }
 }
@@ -197,6 +210,7 @@ function divide(a,b) {
 function clearData() {
     firstNumber = true;
     decimal.disabled = false;
+    equals.disabled = true;
     operator = "";
     numberDisplay.innerHTML = "0";
     numbers = ["",""];
