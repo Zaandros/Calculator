@@ -85,30 +85,27 @@ function selectOperation() {
     if (numbers[1] != "" && operator != "" ) {
         operate();
     }
+    else if (numbers[0] != "" && operator == "√") {
+        operate();
+    }
 
-     if (this.textContent == `+`) {
-        decimal.disabled = false;
-        operator = "+";
-        changeNumber();
-        console.log(operator);
-    }
-    else if (this.textContent == "÷") {
-        decimal.disabled = false;
-        operator = "÷";
-        changeNumber();
-        console.log(operator);
-    }
-    else if (this.textContent == "*") {
-        decimal.disabled = false;
-        operator = "*";
-        changeNumber();
-        console.log(operator);
-    }
-    else if (this.textContent == "-") {
-        decimal.disabled = false;
-        operator = "-";
-        changeNumber();
-        console.log(operator);
+    switch (this.textContent) {
+        case `+`:
+            decimal.disabled = false;
+            changeNumber();
+            return operator = "+";
+        case `÷`:
+            decimal.disabled = false;
+            changeNumber();
+            return operator = "÷";
+        case "*":
+            decimal.disabled = false;
+            changeNumber();
+            return operator = "*";
+        case "-":
+            decimal.disabled = false;
+            changeNumber();
+            return operator = "-";
     }
 
     if (operator == "+") {
@@ -116,23 +113,34 @@ function selectOperation() {
         subtract.classList.remove("selected");
         multiplication.classList.remove("selected");
         divider.classList.remove("selected");
+        sqrRoot.classList.remove("selected");
     }
     else if (operator == "÷") {
         this.classList.add("selected");
         addition.classList.remove("selected");
         subtract.classList.remove("selected");
         multiplication.classList.remove("selected");
+        sqrRoot.classList.remove("selected");
     }
     else if (operator == "*") {
         this.classList.add("selected");
         addition.classList.remove("selected");
         subtract.classList.remove("selected");
         divider.classList.remove("selected");
+        sqrRoot.classList.remove("selected");
     }
     else if (operator == "-") {
         this.classList.add("selected");
         addition.classList.remove("selected");
         multiplication.classList.remove("selected");
+        divider.classList.remove("selected");
+        sqrRoot.classList.remove("selected");
+    }
+    else if (operator == "√") {
+        this.classList.add("selected");
+        addition.classList.remove("selected");
+        multiplication.classList.remove("selected");
+        subtract.classList.remove("selected");
         divider.classList.remove("selected");
     }
 }
