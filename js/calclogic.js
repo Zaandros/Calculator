@@ -3,7 +3,7 @@ const numberDisplay = document.querySelector(".number-display");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 const numberButtons = document.querySelectorAll(".number");
-const functionButtons = document.querySelectorAll(".operator");
+const operatorButtons = document.querySelectorAll(".operator");
 const decimal = document.getElementById("decimal");
 const sqrRoot = document.querySelector("#square-root");
 const posNeg = document.querySelector("#pos-neg");
@@ -11,6 +11,7 @@ const addition = document.getElementById("plus");
 const subtract = document.getElementById("negative");
 const multiplication = document.getElementById("multiply");
 const divider = document.getElementById("divide");
+const deleteBtn = document.getElementById("delete");
 
 //variables
 
@@ -25,8 +26,8 @@ equals.addEventListener("click", operate);
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener("click", selectNumber);
 }
-for (let y = 0; y < functionButtons.length; y++) {
-    functionButtons[y].addEventListener("click", selectOperation);
+for (let y = 0; y < operatorButtons.length; y++) {
+    operatorButtons[y].addEventListener("click", selectOperation);
 }
 posNeg.addEventListener("click", makePosNeg);
 
@@ -63,9 +64,9 @@ function makePosNeg() {
         numbers[0] = numbers[0] * -1;
         numberDisplay.innerHTML = numbers[0];
     }
-    else if (n == 1 && numbers[0] || numbers[1] != 0) {
+    else if (n == 1 && numbers[1] != 0) {
         numbers[1] = numbers[1] * -1;
-        numberDisplay.innerHTML = numbers[1];
+        numberDisplay.innerHTML = numbers[0] + operator + numbers[1];
     }
     
 }
@@ -258,6 +259,7 @@ function divide(a,b) {
     answer = a/b;
 
         if (a/b == Infinity || a/b == -Infinity) {
+            disable();
             answer = "error, self destruct initialised";
         }
 
@@ -276,12 +278,7 @@ function divide(a,b) {
 }
 
 function error() {
-    for (let i = 0; i < numberButtons.length; i++) {
-        numberButtons[i].disabled = true;
-    }
-    for (let y = 0; y < functionButtons.length; y++) {
-        functionButtons[y].disabled = true;
-    }
+    disable();
     numberDisplay.innerHTML = "invalid equation. Please reset calculator";
 }
 
@@ -289,12 +286,14 @@ function clearData() {
     for (let i = 0; i < numberButtons.length; i++) {
         numberButtons[i].disabled = false;
     }
-    for (let y = 0; y < functionButtons.length; y++) {
-        functionButtons[y].disabled = false;
-        functionButtons[y].classList.remove("selected");
+    for (let y = 0; y < operatorButtons.length; y++) {
+        operatorButtons[y].disabled = false;
+        operatorButtons[y].classList.remove("selected");
     }
     firstNumber = true;
     decimal.disabled = false;
+    deleteBtn.disabled = false;
+    posNeg.disabled = false;
     equals.disabled = true;
     numbers.disabled = false;
     operator.disabled = false;
@@ -302,5 +301,17 @@ function clearData() {
     numberDisplay.innerHTML = "0";
     numbers = ["",""];
     n = 0;
+}
+
+function disable() {
+    for (let i = 0; i < numberButtons.length; i++) {
+        numberButtons[i].disabled = true;
+    }
+    for (let y = 0; y < operatorButtons.length; y++) {
+        operatorButtons[y].disabled = true;
+    }
+    deleteBtn.disabled = true;
+    posNeg.disabled = true;
+    equals.disabled = true;
 }
 
