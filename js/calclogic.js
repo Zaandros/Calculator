@@ -58,58 +58,50 @@ function makePosNeg() {
 function selectNumber() {
 
     if (n == 0) {
-
-    numbers[0] = numbers[0] + this.textContent;
-    numberDisplay.innerHTML = numbers[0];
-    console.log(numbers[0]);
+        numbers[0] = numbers[0] + this.textContent;
+        numberDisplay.innerHTML = numbers[0];
     }
-    else if (n == 1) {
+    else {
         numbers[1] = numbers[1] + this.textContent;
         numberDisplay.innerHTML = numbers[0] + operator + numbers[1];
     } 
     if (numbers[1] == "") {
         equals.disabled = true;
     }
-    else if (numbers[0] != "" && numbers[1] != ""){
+    else {
         equals.disabled = false;
     }
-    else if (numbers[0] == 0 && numbers[1] != "") {
-        equals.disabled = false;
-    }
+   
 }
 
 function selectOperation() {
 
-    if (numbers[0] != "" && numbers[1] != "" && operator != "" ) {
+    if (numbers[1] != "" && operator != "" ) {
         operate();
     }
-    if (numbers[0] == 0 && numbers[1] != "" && operator != "" ) {
-        operate();
-    }
-
 
      if (this.textContent == `+`) {
         decimal.disabled = false;
         operator = "+";
-        n = 1;
+        changeNumber();
         console.log(operator);
     }
     else if (this.textContent == "÷") {
         decimal.disabled = false;
         operator = "÷";
-        n = 1;
+        changeNumber();
         console.log(operator);
     }
     else if (this.textContent == "*") {
         decimal.disabled = false;
         operator = "*";
-        n = 1;
+        changeNumber();
         console.log(operator);
     }
     else if (this.textContent == "-") {
         decimal.disabled = false;
         operator = "-";
-        n = 1;
+        changeNumber();
         console.log(operator);
     }
 
@@ -297,5 +289,9 @@ function disable() {
     deleteBtn.disabled = true;
     posNeg.disabled = true;
     equals.disabled = true;
+}
+
+function changeNumber() {
+    n=1
 }
 
