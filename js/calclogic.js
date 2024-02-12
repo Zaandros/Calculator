@@ -185,7 +185,9 @@ function plus(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
     answer = a+b;
-    console.log("answer: " + answer)
+
+    displayAnswer(answer);
+/*
         if (Number.isInteger(answer)) {
             parseFloat(answer.toPrecision(2));
              numbers[0] = answer;
@@ -197,7 +199,7 @@ function plus(a,b) {
              numbers[1] = "";
         }
         
-           numberDisplay.innerHTML = answer;
+           numberDisplay.innerHTML = answer;*/
            console.log(answer);
 }
 
@@ -205,6 +207,8 @@ function minus(a,b) {
     a= parseFloat(a);
     b = parseFloat(b);
     answer = a-b;
+
+    displayAnswer(answer);/*
         if (Number.isInteger(answer)) {
             parseFloat(answer.toPrecision(2));
             numbers[0] = answer;
@@ -215,13 +219,14 @@ function minus(a,b) {
             numbers[0] = answer;
             numbers[1] = "";
         }
-        numberDisplay.innerHTML = answer;
+        numberDisplay.innerHTML = answer;*/
 }
 
 function multiply(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
     answer = a*b;
+    displayAnswer(answer);/*
         if (Number.isInteger(answer)) {
             parseFloat(answer.toPrecision(2));
             numbers[0] = answer;
@@ -232,14 +237,14 @@ function multiply(a,b) {
             numbers[0] = answer;
             numbers[1] = "";
         }
-        numberDisplay.innerHTML = answer;
+        numberDisplay.innerHTML = answer;*/
 }
 
 function divide(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
     answer = a/b;
-
+    displayAnswer(answer);/*
         if (a/b == Infinity || a/b == -Infinity) {
             disable();
             answer = "error, self destruct initialised";
@@ -256,7 +261,7 @@ function divide(a,b) {
             numbers[0] = answer;
             numbers[1] = "";
         }
-        numberDisplay.innerHTML = answer;
+        numberDisplay.innerHTML = answer;*/
 }
 
 function error() {
@@ -295,6 +300,7 @@ function disable() {
 function disableOperator() {
     for (let y = 0; y < operatorButtons.length; y++) {
         operatorButtons[y].disabled = true;
+        operatorButtons[y].classList.remove("selected");
     }
     posNeg.disabled = true;
 }
@@ -311,3 +317,9 @@ function changeNumber() {
     n=1
 }
 
+function displayAnswer(answer) {
+    parseFloat(answer.toPrecision(2));
+    numbers[0] = answer;
+    numbers[1] = "";
+    numberDisplay.innerHTML = answer;
+}
