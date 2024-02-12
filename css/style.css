@@ -56,7 +56,7 @@
     align-items: center;
     font-family: digitaldream;
     white-space: nowrap; 
-    overflow: scroll;
+    overflow: hidden;
     text-overflow: ellipsis;
     
 }
