@@ -187,20 +187,6 @@ function plus(a,b) {
     answer = a+b;
 
     displayAnswer(answer);
-/*
-        if (Number.isInteger(answer)) {
-            parseFloat(answer.toPrecision(2));
-             numbers[0] = answer;
-             numbers[1] = "";
-        }
-        else {
-            parseFloat(answer.toPrecision(2));
-             numbers[0] = answer;
-             numbers[1] = "";
-        }
-        
-           numberDisplay.innerHTML = answer;*/
-           console.log(answer);
 }
 
 function minus(a,b) {
@@ -208,60 +194,28 @@ function minus(a,b) {
     b = parseFloat(b);
     answer = a-b;
 
-    displayAnswer(answer);/*
-        if (Number.isInteger(answer)) {
-            parseFloat(answer.toPrecision(2));
-            numbers[0] = answer;
-            numbers[1] = "";
-        }
-        else {
-            parseFloat(answer.toPrecision(2));
-            numbers[0] = answer;
-            numbers[1] = "";
-        }
-        numberDisplay.innerHTML = answer;*/
+    displayAnswer(answer);
 }
 
 function multiply(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
     answer = a*b;
-    displayAnswer(answer);/*
-        if (Number.isInteger(answer)) {
-            parseFloat(answer.toPrecision(2));
-            numbers[0] = answer;
-            numbers[1] = "";
-        }
-        else {
-            parseFloat(answer.toPrecision(2));
-            numbers[0] = answer;
-            numbers[1] = "";
-        }
-        numberDisplay.innerHTML = answer;*/
+    displayAnswer(answer);
 }
 
 function divide(a,b) {
     a = parseFloat(a);
     b = parseFloat(b);
     answer = a/b;
-    displayAnswer(answer);/*
-        if (a/b == Infinity || a/b == -Infinity) {
-            disable();
-            answer = "error, self destruct initialised";
-        }
-
-        
-        if (Number.isInteger(answer)) {
-            parseFloat((Math.round(answer*100)/100).toFixed(20));
-           numbers[0] = answer;
-           numbers[1] = "";
-        }
-        else {
-            parseFloat((Math.round(answer*100)/100).toFixed(20));
-            numbers[0] = answer;
-            numbers[1] = "";
-        }
-        numberDisplay.innerHTML = answer;*/
+    if (answer == Infinity || answer == -Infinity) {
+        numberDisplay.innerHTML = "Self-destruct initiated"
+        disable();
+    }
+    else {
+        displayAnswer(answer);
+    }
+    
 }
 
 function error() {
