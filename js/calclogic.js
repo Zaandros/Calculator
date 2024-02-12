@@ -5,7 +5,11 @@ const equals = document.querySelector("#equals");
 const numberButtons = document.querySelectorAll(".number");
 const functionButtons = document.querySelectorAll(".operator");
 const decimal = document.getElementById("decimal");
-const sqrRoot = document.getElementById("square-root");
+const sqrRoot = document.querySelector("#square-root");
+const addition = document.getElementById("plus");
+const subtract = document.getElementById("negative");
+const multiplication = document.getElementById("multiply");
+const divider = document.getElementById("divide");
 
 //variables
 
@@ -67,7 +71,7 @@ function selectOperation() {
 
      if (this.textContent == `+`) {
         decimal.disabled = false;
-        operator = `+`;
+        operator = "+";
         n = 1;
         console.log(operator);
     }
@@ -88,6 +92,31 @@ function selectOperation() {
         operator = "-";
         n = 1;
         console.log(operator);
+    }
+
+    if (operator == "+") {
+        this.classList.add("selected");
+        subtract.classList.remove("selected");
+        multiplication.classList.remove("selected");
+        divider.classList.remove("selected");
+    }
+    else if (operator == "÷") {
+        this.classList.add("selected");
+        addition.classList.remove("selected");
+        subtract.classList.remove("selected");
+        multiplication.classList.remove("selected");
+    }
+    else if (operator == "*") {
+        this.classList.add("selected");
+        addition.classList.remove("selected");
+        subtract.classList.remove("selected");
+        divider.classList.remove("selected");
+    }
+    else if (operator == "-") {
+        this.classList.add("selected");
+        addition.classList.remove("selected");
+        multiplication.classList.remove("selected");
+        divider.classList.remove("selected");
     }
 }
 
@@ -227,6 +256,7 @@ function clearData() {
     }
     for (let y = 0; y < functionButtons.length; y++) {
         functionButtons[y].disabled = false;
+        functionButtons[y].classList.remove("selected");
     }
     firstNumber = true;
     decimal.disabled = false;
