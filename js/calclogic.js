@@ -15,7 +15,7 @@ const divider = document.getElementById("divide");
 //variables
 
 let numbers = ["",""];
-let answer = 0;
+let answer = "";
 let operator= "";
 let n = 0;
 
@@ -32,6 +32,8 @@ posNeg.addEventListener("click", makePosNeg);
 
 
 //misc code
+
+
 /*
 while (n == 0) {
     if (numbers[0] == "") {
@@ -91,6 +93,9 @@ function selectNumber() {
 function selectOperation() {
 
     if (numbers[0] != "" && numbers[1] != "" && operator != "" ) {
+        operate();
+    }
+    if (numbers[0] == 0 && numbers[1] != "" && operator != "" ) {
         operate();
     }
 
@@ -253,6 +258,7 @@ function divide(a,b) {
             answer = "error, self destruct initialised";
         }
 
+        
         if (Number.isInteger(answer)) {
             parseFloat((Math.round(answer*100)/100).toFixed(20));
            numbers[0] = answer;
