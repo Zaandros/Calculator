@@ -77,6 +77,10 @@
     background-color: lightcoral;
 }
 
+.selected {
+    background-color: yellow;
+}
+
 #clear {
     background-color: orange;
 }
