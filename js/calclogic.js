@@ -6,6 +6,7 @@ const numberButtons = document.querySelectorAll(".number");
 const functionButtons = document.querySelectorAll(".operator");
 const decimal = document.getElementById("decimal");
 const sqrRoot = document.querySelector("#square-root");
+const posNeg = document.querySelector("#pos-neg");
 const addition = document.getElementById("plus");
 const subtract = document.getElementById("negative");
 const multiplication = document.getElementById("multiply");
@@ -27,8 +28,23 @@ for (let i = 0; i < numberButtons.length; i++) {
 for (let y = 0; y < functionButtons.length; y++) {
     functionButtons[y].addEventListener("click", selectOperation);
 }
+posNeg.addEventListener("click", makePosNeg);
 
 
+//misc code
+/*
+while (n == 0) {
+    if (numbers[0] == "") {
+    for (let w = 0; w < functionButtons.length; w++) {
+        functionButtons[w].disabled = true;
+    }
+}
+else {
+    for (let w = 0; w < functionButtons.length; w++) {
+        functionButtons[w].disabled = false;
+    }
+}
+}*/
 
 //functions
 equals.disabled = true;
@@ -40,10 +56,19 @@ sqrRoot.onclick = function() {
     operate();
 }
 
+function makePosNeg() {
+    if (n == 0 && numbers[0] || numbers[1] != 0) {
+        numbers[0] = numbers[0] * -1;
+        numberDisplay.innerHTML = numbers[0];
+    }
+    else if (n == 1 && numbers[0] || numbers[1] != 0) {
+        numbers[1] = numbers[1] * -1;
+        numberDisplay.innerHTML = numbers[1];
+    }
+    
+}
 
 function selectNumber() {
-
-   
 
     if (n == 0) {
 
@@ -68,6 +93,7 @@ function selectOperation() {
     if (numbers[0] != "" && numbers[1] != "" && operator != "" ) {
         operate();
     }
+
 
      if (this.textContent == `+`) {
         decimal.disabled = false;
