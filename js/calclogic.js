@@ -82,10 +82,13 @@ function selectNumber() {
         numbers[1] = numbers[1] + this.textContent;
         numberDisplay.innerHTML = numbers[0] + operator + numbers[1];
     } 
-    if (numbers[0] == "" || numbers[1] == "") {
+    if (numbers[1] == "") {
         equals.disabled = true;
     }
     else if (numbers[0] != "" && numbers[1] != ""){
+        equals.disabled = false;
+    }
+    else if (numbers[0] == 0 && numbers[1] != "") {
         equals.disabled = false;
     }
 }
