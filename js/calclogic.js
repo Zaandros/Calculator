@@ -33,6 +33,8 @@ posNeg.addEventListener("click", makePosNeg);
 
 //misc code
 
+disableOperator();
+
 //functions
 equals.disabled = true;
 decimal.onclick = function() {
@@ -70,6 +72,10 @@ function selectNumber() {
     }
     else {
         equals.disabled = false;
+        
+    }
+    if (numbers[0] != "" || numbers!= 0) {
+        enableOperator();
     }
    
 }
@@ -262,10 +268,7 @@ function clearData() {
     for (let i = 0; i < numberButtons.length; i++) {
         numberButtons[i].disabled = false;
     }
-    for (let y = 0; y < operatorButtons.length; y++) {
-        operatorButtons[y].disabled = false;
-        operatorButtons[y].classList.remove("selected");
-    }
+    disableOperator();
     firstNumber = true;
     decimal.disabled = false;
     deleteBtn.disabled = false;
@@ -283,12 +286,25 @@ function disable() {
     for (let i = 0; i < numberButtons.length; i++) {
         numberButtons[i].disabled = true;
     }
-    for (let y = 0; y < operatorButtons.length; y++) {
-        operatorButtons[y].disabled = true;
-    }
+    disableOperator();
     deleteBtn.disabled = true;
     posNeg.disabled = true;
     equals.disabled = true;
+}
+
+function disableOperator() {
+    for (let y = 0; y < operatorButtons.length; y++) {
+        operatorButtons[y].disabled = true;
+    }
+    posNeg.disabled = true;
+}
+
+function  enableOperator() {
+    for (let y = 0; y < operatorButtons.length; y++) {
+        operatorButtons[y].disabled = false;
+        operatorButtons[y].classList.remove("selected");
+    }
+    posNeg.disabled = false;
 }
 
 function changeNumber() {
