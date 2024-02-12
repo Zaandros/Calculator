@@ -31,23 +31,7 @@ for (let y = 0; y < operatorButtons.length; y++) {
 }
 posNeg.addEventListener("click", makePosNeg);
 
-
 //misc code
-
-
-/*
-while (n == 0) {
-    if (numbers[0] == "") {
-    for (let w = 0; w < functionButtons.length; w++) {
-        functionButtons[w].disabled = true;
-    }
-}
-else {
-    for (let w = 0; w < functionButtons.length; w++) {
-        functionButtons[w].disabled = false;
-    }
-}
-}*/
 
 //functions
 equals.disabled = true;
