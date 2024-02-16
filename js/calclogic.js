@@ -30,6 +30,7 @@ for (let y = 0; y < operatorButtons.length; y++) {
     operatorButtons[y].addEventListener("click", selectOperation);
 }
 posNeg.addEventListener("click", makePosNeg);
+deleteBtn.addEventListener("click", backspace);
 
 //misc code
 
@@ -142,8 +143,8 @@ function operate() {
             equals.disabled = true;
             return divide(numbers[0],numbers[1]);
         case `√`:
-            decimal,disabled = false;
-            equals.disabled = true;
+            decimal.disabled = false;
+            equals.disabled = false;
             return square(numbers[0]);
    }
 }
@@ -263,4 +264,15 @@ function displayAnswer(answer) {
     numbers[0] = answer;
     numbers[1] = "";
     numberDisplay.innerHTML = answer;
+}
+
+function backspace() {
+    if (n == 0) {
+        numbers[0] = numbers[0].slice(0, -1);
+        numberDisplay.innerHTML = numbers[0];
+    }
+    else {
+        numbers[1] = numbers[1].slice(0, -1);
+        numberDisplay.innerHTML = numbers[0] + operator + numbers[1];
+    }
 }
